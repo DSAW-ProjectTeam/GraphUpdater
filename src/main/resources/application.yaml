@@ -1,0 +1,34 @@
+server:
+  port: 11451
+  servlet:
+    encoding:
+      charset: UTF-8
+spring:
+  datasource:
+    username: root
+    password: .........
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://81.70.88.65:3306/project_test?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=UTC
+    hikari:
+      read-only: false
+      maximum-pool-size: 10
+      auto-commit: true
+      minimum-idle: 10
+      connection-timeout: 1000000
+      idle-timeout: 1000000
+      max-lifetime: 1000000
+  main:
+    allow-bean-definition-overriding: true
+
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+      ddl-auto: update
+
+constant:
+  neo4j:
+    username: neo4j
+    password: 12345678
+    url: neo4j://localhost:7687
