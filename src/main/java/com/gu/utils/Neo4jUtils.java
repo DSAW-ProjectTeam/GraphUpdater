@@ -83,9 +83,9 @@ public class Neo4jUtils {
 
             // 如果存在当前释义节点存在，为它添加新的出处
             if (!stringUtils.isNullOrEmpty(source) && nodesToSave.containsKey(translation)){
-                    translNode = nodesToSave.get(translation);
-                    translNode.addSourceNode(sourceNode);
-                    continue;
+                translNode = nodesToSave.get(translation);
+                translNode.addSourceNode(sourceNode);
+                continue;
             }
 
             translNode = isTranslExist(translation);
@@ -141,6 +141,7 @@ public class Neo4jUtils {
             if (!stringUtils.isNullOrEmpty(word) && wordNode != null){
                 wordNode.addTranslationNode(translNode);
                 nodesToSave.put(word,wordNode);
+                continue;
             }
 
             // 否则新建

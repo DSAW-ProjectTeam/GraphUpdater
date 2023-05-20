@@ -16,9 +16,13 @@ class GraphUpdaterApplicationTests {
 
     @Test
     void contextLoads() throws Exception{
-//        neo4jUtils.addSourceNodes();
+        neo4jUtils.addSourceNodes();
         neo4jUtils.addTranslationNodes();
 //        neo4jUtils.addWordNodes();
+    }
+
+    @Test
+    void Test(){
     }
 
 }
