@@ -45,7 +45,7 @@ public class Neo4jUtils {
                 continue;
             }
 
-            SourceNode sourceNode = new SourceNode(source.hashCode(), source, source);
+            SourceNode sourceNode = new SourceNode(source.hashCode(), source.hashCode(), source, source);
             nodesToSave.put(source,sourceNode);
         }
 
@@ -57,6 +57,7 @@ public class Neo4jUtils {
     /**
      * @Author Midsummra
      * <h3>存储[释义节点]</h3>
+     * @// TODO: 2023/5/20  节点重复添加，待修复
      */
     public void addTranslationNodes(){
         HashMap<String, TranslNode> nodesToSave = new HashMap<>();
@@ -76,7 +77,7 @@ public class Neo4jUtils {
             // 获得当前data的source
             sourceNode = isSourceExist(source);
             if (!stringUtils.isNullOrEmpty(source) && sourceNode == null){
-                sourceNode = new SourceNode(source.hashCode(), source, source);
+                sourceNode = new SourceNode(source.hashCode(), source.hashCode(), source, source);
                 neo4jService.saveSourceNode(sourceNode);
             }
 
@@ -95,7 +96,7 @@ public class Neo4jUtils {
             }
 
             // 否则新建
-            translNode = new TranslNode(translation.hashCode(),data.getTranslation(),data.getWord(),null,0,null);
+            translNode = new TranslNode(translation.hashCode(), translation.hashCode(), data.getTranslation(),data.getWord(),null,0,null);
 
             if (sourceNode != null){
                 translNode.addSourceNode(sourceNode);
@@ -125,7 +126,7 @@ public class Neo4jUtils {
             // 获取当前data的translation
             translNode = isTranslExist(translation);
             if (!stringUtils.isNullOrEmpty(translation) && translNode == null){
-                translNode = new TranslNode(translation.hashCode(),data.getTranslation(),data.getWord(),null,0,null);
+                translNode = new TranslNode(translation.hashCode(), translation.hashCode(), data.getTranslation(),data.getWord(),null,0,null);
                 neo4jService.saveTranslNode(translNode);
             }
 
@@ -143,7 +144,7 @@ public class Neo4jUtils {
             }
 
             // 否则新建
-            wordNode = new WordNode(word.hashCode(),data.getWord(),null);
+            wordNode = new WordNode(word.hashCode(), word.hashCode(), data.getWord(), null);
             if (translNode != null){
                 wordNode.addTranslationNode(translNode);
             }
@@ -160,6 +161,9 @@ public class Neo4jUtils {
      * @return SourceNode 来源是否存在(不存在时返回null)
      */
     private @Nullable SourceNode isSourceExist(String source){
+        if (source == null){
+            return null;
+        }
         List<SourceNode> sourceNodes = neo4jService.queryAllSource(source);
         return (sourceNodes != null && sourceNodes.size() >= 1) ? sourceNodes.get(0) : null;
 
@@ -171,6 +175,9 @@ public class Neo4jUtils {
      * @return TranslNode 释义是否存在(不存在时返回null)
      */
     private @Nullable TranslNode isTranslExist(String translation){
+        if (translation == null){
+            return null;
+        }
         List<TranslNode> translNodes = neo4jService.queryAllTransl(translation);
         return (translNodes != null && translNodes.size() >= 1) ? translNodes.get(0) : null;
     }
@@ -181,6 +188,9 @@ public class Neo4jUtils {
      * @return WordNode 词条是否存在(不存在时返回null)
      */
     private @Nullable WordNode isWordExist(String word){
+        if (word == null){
+            return null;
+        }
         List<WordNode> wordNodes = neo4jService.queryAllWord(word);
         return (wordNodes != null && wordNodes.size() >= 1) ? wordNodes.get(0) : null;
     }

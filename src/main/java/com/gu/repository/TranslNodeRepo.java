@@ -12,4 +12,5 @@ public interface TranslNodeRepo extends CrudRepository<TranslNode,Long>{
 
     List<TranslNode> queryAllByVal(String translation);
 
+    List<TranslNode> queryAllByUuid(long id);
 }

@@ -56,16 +56,16 @@ public class Neo4jServiceImpl implements Neo4jService{
 
     @Override
     public List<SourceNode> queryAllSource(String source) {
-        return sourceNodeRepo.queryAllByVal(source);
+        return sourceNodeRepo.queryAllByUuid(source.hashCode());
     }
 
     @Override
     public List<TranslNode> queryAllTransl(String translation) {
-        return translNodeRepo.queryAllByVal(translation);
+        return translNodeRepo.queryAllByUuid(translation.hashCode());
     }
 
     @Override
     public List<WordNode> queryAllWord(String word) {
-        return wordNodeRepo.queryAllByVal(word);
+        return wordNodeRepo.queryAllByUuid(word.hashCode());
     }
 }

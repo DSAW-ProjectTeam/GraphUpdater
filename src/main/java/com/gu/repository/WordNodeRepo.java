@@ -11,4 +11,6 @@ import java.util.List;
 public interface WordNodeRepo extends CrudRepository<WordNode,Long> {
 
     List<WordNode> queryAllByVal(String word);
+
+    List<WordNode> queryAllByUuid(long id);
 }

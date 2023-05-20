@@ -21,6 +21,8 @@ public class TranslNode {
     @GeneratedValue
     private long id;
 
+    private long uuid;
+
     private String val;
 
     private String word;

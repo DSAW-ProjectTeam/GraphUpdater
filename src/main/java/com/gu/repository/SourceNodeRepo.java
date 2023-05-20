@@ -10,4 +10,6 @@ import java.util.List;
 public interface SourceNodeRepo extends CrudRepository<SourceNode,Long>{
 
     List<SourceNode> queryAllByVal(String source);
+
+    List<SourceNode> queryAllByUuid(long id);
 }

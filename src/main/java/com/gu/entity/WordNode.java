@@ -21,6 +21,8 @@ public class WordNode {
     @GeneratedValue
     private long id;
 
+    private long uuid;
+
     private String val;
 
     @Relationship(value = "释义", direction = Relationship.Direction.OUTGOING, type = "释义")

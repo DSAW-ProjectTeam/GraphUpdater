@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     username: root
-    password: .........
+    password: DsAbsWord114514!^~
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://81.70.88.65:3306/project_test?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=UTC
     hikari:
